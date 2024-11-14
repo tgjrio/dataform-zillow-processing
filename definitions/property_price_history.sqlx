@@ -1,0 +1,23 @@
+config {
+  type: "table",
+  schema: "zillow_production",
+  name: "propert_price_history",
+  description: "Tracks changes in the property’s price over time."
+}
+
+SELECT
+  ph.zpid,
+  pm.address,
+  date AS dateOfEvent,
+  event,
+  source,
+  postingIsRental,
+  ph.price,
+  ROUND(priceChangeRate, 2) AS priceChangeRate, 
+  CAST(pricePerSquareFoot AS INT) AS pricePerSqFt,
+  DATE(TIMESTAMP_MILLIS(CAST(time AS INTEGER))) AS eventTimestampDate
+FROM `personal-portfolio-hty0zj.zillow_ingest.property_price_history` ph
+LEFT JOIN
+  `personal-portfolio-hty0zj.zillow_ingest.property_main` pm
+USING (zpid)
+WHERE zpid IS NOT NULL

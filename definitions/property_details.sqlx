@@ -1,0 +1,33 @@
+config {
+  type: "table",
+  schema: "zillow_production",
+  name: "property_details",
+  description: "Core details of a property"
+
+}
+
+-- CONVERT THIS INTO AN INCREMENTAL BASED ON ZPID AND UPDATE PRICE, LISTING STATUS, TIME ON ZILLOW, FAVORITE COUNT
+
+SELECT 
+    zpid,
+    address,
+    city,
+    state,
+    county,
+    zipcode,
+    bedrooms,
+    bathrooms,
+    livingArea,
+    homeType,
+    homeStatus,
+    yearBuilt,
+    listingStatus,
+    timeOnZillow,
+    price,
+    zestimate,
+    propertyTaxRate,
+    favoriteCount,
+    imgSrc,
+    CONCAT("https://www.zillow.com", url) AS fullUrl
+FROM `personal-portfolio-hty0zj.zillow_ingest.property_main`
+WHERE zpid IS NOT NULL
