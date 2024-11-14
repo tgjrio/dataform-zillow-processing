@@ -1,0 +1,22 @@
+config {
+  type: "table",
+  schema: "zillow_production",
+  name: "property_schools_nearby",
+  description: "Stores school-related information for properties."
+}
+
+SELECT
+  zpid,
+  pm.address,
+  schoolName,
+  distance,
+  grades,
+  level,
+  type,
+  rating,
+  link
+FROM `personal-portfolio-hty0zj.zillow_ingest.property_school_info` si
+LEFT JOIN
+  `personal-portfolio-hty0zj.zillow_ingest.property_main` pm
+USING (zpid)
+WHERE zpid IS NOT NULL

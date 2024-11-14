@@ -1,0 +1,33 @@
+config {
+  type: "table",
+  schema: "zillow_production",
+  name: "property_features",
+  description: "Stores property features and additional details"
+}
+
+SELECT
+  zpid,
+  pm.address,
+  stories,
+  buildingArea,
+  lotSize,
+  appliances,
+  architecturalStyle,
+  aboveGradeFinishedArea,
+  associationFee,
+  associationFeeIncludes,
+  associationAmenities,
+  cooling,
+  heating,
+  interiorFeatures,
+  parkingFeatures,
+  propertyCondition,
+  roofType,
+  securityFeatures
+
+FROM `personal-portfolio-hty0zj.zillow_ingest.property_reso_info` si
+LEFT JOIN
+  `personal-portfolio-hty0zj.zillow_ingest.property_main` pm
+USING (zpid)
+WHERE zpid IS NOT NULL
+
