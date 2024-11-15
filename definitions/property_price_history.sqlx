@@ -16,8 +16,8 @@ SELECT
   ROUND(priceChangeRate, 2) AS priceChangeRate, 
   CAST(pricePerSquareFoot AS INT) AS pricePerSqFt,
   DATE(TIMESTAMP_MILLIS(CAST(time AS INTEGER))) AS eventTimestampDate
-FROM `personal-portfolio-hty0zj.zillow_ingest.property_price_history` ph
+FROM `personal-portfolio-hty0zj.zillow_ingest_load.property_price_history` ph
 LEFT JOIN
-  `personal-portfolio-hty0zj.zillow_ingest.property_main` pm
+  `personal-portfolio-hty0zj.zillow_ingest_load.property_main` pm
 USING (zpid)
 WHERE zpid IS NOT NULL
