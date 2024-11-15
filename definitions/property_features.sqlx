@@ -25,9 +25,9 @@ SELECT
   roofType,
   securityFeatures
 
-FROM `personal-portfolio-hty0zj.zillow_ingest.property_reso_info` si
+FROM `personal-portfolio-hty0zj.zillow_ingest_load.property_reso_info` si
 LEFT JOIN
-  `personal-portfolio-hty0zj.zillow_ingest.property_main` pm
+  `personal-portfolio-hty0zj.zillow_ingest_load.property_main` pm
 USING (zpid)
 WHERE zpid IS NOT NULL
 

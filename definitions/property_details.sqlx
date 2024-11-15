@@ -29,5 +29,5 @@ SELECT
     favoriteCount,
     imgSrc,
     CONCAT("https://www.zillow.com", url) AS fullUrl
-FROM `personal-portfolio-hty0zj.zillow_ingest.property_main`
+FROM `personal-portfolio-hty0zj.zillow_ingest_load.property_main`
 WHERE zpid IS NOT NULL
